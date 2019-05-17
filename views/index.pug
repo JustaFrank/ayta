@@ -1,0 +1,15 @@
+extends layout.pug
+
+block scripts
+    script(src='javascripts/index.js', type='module')
+    script(src='https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js')
+
+block content
+    .container-fluid
+        #search.ayta-animate.ayta-translate-y.px-md-5.px-3.pt-5
+            h1.mb-0 Are you the asshole?
+            #text-validation.ayta-form-error.ayta-hidden Invalid url
+            input#input-url.ayta-input.mt-1(type='text', placeholder='Enter a url from r/AmItheAsshole', spellcheck='false')
+
+        .ayta-chart-container.px-md-5.px-3.mt-5
+            canvas#canvas-chart

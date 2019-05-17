@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap');
+
+html,
+body {
+  height: 100%;
+  background: #1e2327;
+  color: white;
+  font-size: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+::placeholder {
+  color: #99a3a4;
+}
+
+.ayta-input {
+  border: none;
+  background-image: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+
+  background: #293033;
+  caret-color: white;
+  color: white;
+  width: 100%;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.ayta-translate-y {
+  transition-delay: 1s;
+  transform: translateY(100px);
+}
+
+.ayta-animate {
+  transition: all 0.5s ease-in-out;
+}
+
+.ayta-form-error {
+  color: #ff5733;
+  font-size: 16px;
+}
+
+.ayta-form-error-input {
+  border: 1px solid #ff5733;
+}
+
+.ayta-hidden {
+  visibility: hidden;
+}
+
+.ayta-chart-container {
+  height: 55vh;
+}
