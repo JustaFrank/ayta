@@ -1,17 +1,7 @@
 import { parsePostResponse } from './controllers/parsePostResponse.js'
 import { parsePostData } from './controllers/parsePostData.js'
 import { createChart } from './controllers/createChart.js'
-
-const validateLink = link => {
-  const matches = link.match(
-    /^http[s]?:\/\/(?:www.)?reddit\.com\/r\/AmItheAsshole\/comments\/(?:[a-z1-9]+)\/(?:[a-z1-9_]+)/i
-  )
-  if (matches) {
-    return true
-  } else {
-    return false
-  }
-}
+import { validateLink } from './controllers/validateLink.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   const search = document.getElementById('search')
