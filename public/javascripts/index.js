@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvasChart = document.getElementById('canvas-chart')
   const ctx = canvasChart.getContext('2d')
 
+  let chart = undefined
+
   const showFormError = () => {
     textValidation.classList.remove('ayta-hidden')
     inputUrl.classList.add('ayta-form-error-input')
@@ -45,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(parsePostResponse)
         .then(parsePostData)
         .then(aitaJudgementCounts => {
-          createChart(ctx, aitaJudgementCounts)
+          if (chart) chart.destroy()
+          chart = createChart(ctx, aitaJudgementCounts)
         })
         .then(activate)
         .catch(() => {
