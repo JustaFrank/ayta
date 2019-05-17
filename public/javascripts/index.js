@@ -7,18 +7,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const search = document.getElementById('search')
   const inputUrl = document.getElementById('input-url')
   const textValidation = document.getElementById('text-validation')
-  const ctx = document.getElementById('canvas-chart').getContext('2d')
-  let chart = undefined
+  const canvasChart = document.getElementById('canvas-chart')
+  const ctx = canvasChart.getContext('2d')
 
-  inputUrl.addEventListener('input', () => {
+  const showFormError = () => {
+    textValidation.classList.remove('ayta-hidden')
+    inputUrl.classList.add('ayta-form-error-input')
+  }
+
+  const hideFormError = () => {
+    textValidation.classList.add('ayta-hidden')
+    inputUrl.classList.remove('ayta-form-error-input')
+  }
+
+  const activate = () => {
+    search.classList.remove('ayta-translate-y')
+    canvasChart.style.display = 'block'
+  }
+
+  const deactivate = () => {
+    search.classList.add('ayta-translate-y')
+    canvasChart.style.display = 'none'
+  }
+
+  inputUrl.addEventListener('input', async () => {
     const isValidLink = validateLink(inputUrl.value)
 
     if (isValidLink || inputUrl.value === '') {
-      textValidation.classList.add('ayta-hidden')
-      inputUrl.classList.remove('ayta-form-error-input')
+      hideFormError()
     } else {
-      textValidation.classList.remove('ayta-hidden')
-      inputUrl.classList.add('ayta-form-error-input')
+      showFormError()
     }
 
     if (isValidLink) {
@@ -27,14 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(parsePostResponse)
         .then(parsePostData)
         .then(aitaJudgementCounts => {
-          chart = createChart(ctx, aitaJudgementCounts)
+          createChart(ctx, aitaJudgementCounts)
         })
-      search.classList.remove('ayta-translate-y')
+        .then(activate)
+        .catch(() => {
+          showFormError()
+          deactivate()
+        })
     } else {
-      search.classList.add('ayta-translate-y')
-      if (chart) {
-        chart.destroy()
-      }
+      deactivate()
     }
   })
 })
